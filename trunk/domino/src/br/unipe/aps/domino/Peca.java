@@ -41,26 +41,17 @@ public class Peca {
 	/*
 	 * Métodos
 	 * */
-	 public static List<Peca> criarPecas(){
-		 List<Peca> pecas = new LinkedList<Peca>();
+	public static LinkedList<Peca> criarPecas(){
+		LinkedList<Peca> pecas = new LinkedList<Peca>();
 
-		 for (int a = 0; a <= 6; a++){
-			 Lado ladoA = new Lado();
-			 ladoA.setValor(a);
-
-			 for (int b = 0; b <= 6; b++){
-				 Lado ladoB = new Lado();
-				 ladoB.setValor(b);
-
-				 Peca peca = new Peca(ladoA, ladoB);
-				 for (Peca pecaAtual : pecas){
-					 if (!pecaAtual.equals(peca))
-						 pecas.add(peca);
-				 }
-			 }
-		 }
-		 return pecas;
-	 }
+		for (int a = 0; a <= 6; a++){
+			for (int b = a; b <= 6; b++){
+				Peca peca = new Peca(new Lado(a), new Lado(b));
+				pecas.add(peca);
+			}
+		}
+		return pecas;
+	}
 
 	 public static void shufflePecas(List<Peca> pecas){
 		 Collections.shuffle(pecas);
